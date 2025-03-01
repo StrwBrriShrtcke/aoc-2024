@@ -5,19 +5,11 @@ const answerArray = []
 const rLObject = {};
 
 for (let i = 0; i < rL.length; i++) {
-  if (rLObject[rL[i]] !== undefined) {
-    rLObject[rL[i]] = rLObject[rL[i]] + 1
-  }
-  else if (rLObject[rL[i]] === undefined) {
-    rLObject[rL[i]] = 1
-  }
+  rLObject[rL[i]] = 1 + (rLObject[rL[i]] ?? 0)
 }
 
 let sum = 0
 for (let i = 0; i < lL.length; i++) {
-
-  if (rLObject[lL[i]] !== undefined) {
-    sum += lL[i] * rLObject[lL[i]]
-  }
+    sum += lL[i] * (rLObject[lL[i]] ?? 0)
 }
 console.log(sum)
