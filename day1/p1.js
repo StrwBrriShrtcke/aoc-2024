@@ -1,29 +1,29 @@
 import fs from 'node:fs';
 const data = fs.readFileSync('./input.txt', 'utf8')
 export const dataArray = data.split(/\s+/g)
+
 let rightList = []
 let leftList = []
 
 for (let i = 0; i < dataArray.length - 1; i++) {
-  function oddOrEven(number) {
-    return number % 2 === 0
-  }
-  if (oddOrEven(i)) {
+  if (i % 2 === 0) {
     leftList.push(dataArray[i])
   }
-  else if (!oddOrEven(i)) {
+  else if (i % 2 !== 0) {
     rightList.push(dataArray[i])
   }
 }
+
 rightList.sort((a, b) => a - b)
 leftList.sort((a, b) => a - b)
 
 export const lL = leftList;
 export const rL = rightList;
-let answerArray = []
+
+let sum = 0
 for (let i = 0; i < rightList.length; i++) {
-  answerArray.push(Math.abs(leftList[i] - rightList[i]))
+  sum += (Math.abs(leftList[i] - rightList[i]))
 }
-const answer = answerArray.reduce((accumulate, nextValue) => accumulate + nextValue, 0)
-console.log(answer)
-  
+
+console.log(sum)
+
